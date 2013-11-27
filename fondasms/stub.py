@@ -39,6 +39,10 @@ from __future__ import (unicode_literals, absolute_import,
                                   "On vous rappelle bientôt.")},
         name='fondasms') '''
 
+def handle_outgoing_request(payload):
+    ''' Handles an `outgoing` action '''
+    return
+
 
 def handle_incoming_call(payload):
     ''' Handles an `incoming` action with `type` being `call` '''

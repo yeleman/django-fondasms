@@ -5,7 +5,7 @@
 from setuptools import setup
 
 setup(name='fondasms',
-      version='0.2',
+      version='0.3',
       description='Django app to add support for FondaSMS requests.',
       long_description=("Allow any django app to handle SMS/Call requests "
                         "using the FondaSMS Android App."),

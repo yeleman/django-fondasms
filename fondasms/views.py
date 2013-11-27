@@ -33,6 +33,7 @@ def fondasms_handler(request, **options):
         mod = stub
 
     # import handlers
+    handle_outgoing_request = import_path('handle_outgoing_request', module=mod, fallback=stub)
     handle_incoming_call = import_path('handle_incoming_call', module=mod, fallback=stub)
     handle_incoming_sms = import_path('handle_incoming_sms', module=mod, fallback=stub)
     handle_outgoing_status_change = import_path('handle_outgoing_status_change', module=mod, fallback=stub)
@@ -53,7 +54,7 @@ def fondasms_handler(request, **options):
                                             options=options,
                                             handler=automatic_reply_handler) or []
     elif action == "outgoing":
-        pass
+        handler = handle_outgoing_request
     elif action == 'send_status':
         handler = handle_outgoing_status_change
     elif action == 'device_status':
