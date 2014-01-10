@@ -37,7 +37,7 @@ def outgoing_for(to, message, ident=None, priority=0):
 
 def datetime_from_timestamp(timestamp):
     try:
-        return datetime.datetime.fromtimestamp(int(timestamp) / 1000)
+        return datetime.datetime.utcfromtimestamp(int(timestamp) / 1000)
     except (TypeError, ValueError):
         return None
     return None
