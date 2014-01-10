@@ -7,6 +7,19 @@ from __future__ import (unicode_literals, absolute_import,
 import datetime
 
 
+class UTC(datetime.tzinfo):
+    def utcoffset(self, dt):
+        return datetime.timedelta(0)
+
+    def tzname(self, dt):
+        return "UTC"
+
+    def dst(self, dt):
+        return datetime.timedelta(0)
+
+utc = UTC()
+
+
 def import_path(callable_name, module, fallback):
     def do_import(name):
         ''' import a callable from full module.callable name '''
@@ -37,7 +50,8 @@ def outgoing_for(to, message, ident=None, priority=0):
 
 def datetime_from_timestamp(timestamp):
     try:
-        return datetime.datetime.utcfromtimestamp(int(timestamp) / 1000)
+        return datetime.datetime.utcfromtimestamp(
+            int(timestamp) / 1000).replace(tzinfo=utc)
     except (TypeError, ValueError):
         return None
     return None
