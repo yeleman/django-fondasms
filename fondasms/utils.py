@@ -6,18 +6,7 @@ from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import datetime
 
-
-class UTC(datetime.tzinfo):
-    def utcoffset(self, dt):
-        return datetime.timedelta(0)
-
-    def tzname(self, dt):
-        return "UTC"
-
-    def dst(self, dt):
-        return datetime.timedelta(0)
-
-utc = UTC()
+from django.utils.timezone import utc
 
 
 def import_path(callable_name, module, fallback):

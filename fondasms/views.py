@@ -60,7 +60,7 @@ def fondasms_handler(request, **options):
     elif action == 'device_status':
         handler = handle_device_status_change
     else:
-        return HttpResponse(json.dumps({}), mimetype='application/json')
+        return HttpResponse(json.dumps({}), content_type='application/json')
 
     try:
         outgoings += handler(request.POST) or []
@@ -69,7 +69,7 @@ def fondasms_handler(request, **options):
     except Exception as e:
         response = {'error': {'message': str(e)}}
         return HttpResponse(json.dumps(response),
-                            mimetype='application/json',
+                            content_type='application/json',
                             status=500)
 
     response = {"events": [],
@@ -79,7 +79,7 @@ def fondasms_handler(request, **options):
                             "messages": outgoings})
 
     return HttpResponse(json.dumps(response),
-                        mimetype='application/json')
+                        content_type='application/json')
 
 
 def handle_automatic_reply(payload, options, handler=None):
