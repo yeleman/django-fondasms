@@ -5,12 +5,16 @@
 from __future__ import (unicode_literals, absolute_import,
                         division, print_function)
 import json
+import logging
+import traceback
 
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from fondasms.utils import import_path, outgoing_for
+
+logger = logging.getLogger(__name__)
 
 
 def fondasms_tester(request):
@@ -67,6 +71,9 @@ def fondasms_handler(request, **options):
         if not isinstance(outgoings, list):
             outgoings = []
     except Exception as e:
+        logger.error("Exception in request processing ({action}) : "
+                     "{excp}".format(action=action, excp=e))
+        logger.debug("".join(traceback.format_exc()))
         response = {'error': {'message': str(e)}}
         return HttpResponse(json.dumps(response),
                             content_type='application/json',
