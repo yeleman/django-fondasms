@@ -220,7 +220,7 @@ function performAction() {
     xhr.send(paramStr);
 }
 
-$('server_url').value = location.href.replace("test.html","gateway.php");
+$('server_url').value = "{% url 'fondasms' %}";
 $('timestamp').value = new Date().getTime();
 $('now').value = new Date().getTime();
 
