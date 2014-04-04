@@ -253,7 +253,7 @@ function toTimestamp(dateString) {
     return date.getTime();
 }
 
-$('server_url').value = location.href.replace("test.html","gateway.php");
+$('server_url').value = "{% url 'fondasms' %}";
 $('datetime').value = new Date().format(dateformat);
 $('now').value = new Date().format(dateformat);
 
